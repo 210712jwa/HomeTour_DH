@@ -10,7 +10,6 @@ package fixtures;
 public class Room extends Fixtures {
 	int spot = 0;
 	int i = 0;
-	String direction;
 	String fname;
 
 	private Room[] exits;
@@ -36,13 +35,22 @@ public class Room extends Fixtures {
 		
 	}
 
-	public void ExitOption(String direction) {
-		// TODO Auto-generated method stub
-		if (direction == "north") {
-			spot = 1;
-		} else if (direction == "south") {
-			spot = 2;
+	public Room getExit(String commands) {
+		if (commands.equals("North") || commands.equals("north")) {
+			return exits[0];
 		}
+		if (commands.equals("South") || commands.equals("south")) {
+			return exits[1];
+		}
+		if (commands.equals("East") || commands.equals("east")) {
+			return exits[2];
+		}
+		if (commands.equals("West") || commands.equals("west")) {
+			return exits[3];
+		}
+		// TODO Auto-generated method stub
+
+		return null;
 	}
 
 }

@@ -20,12 +20,6 @@ public class Player {
 		this.currentRoom = roomManagerSetRoom;
 	}
 
-
-	public void action(Player p1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public String directionalMap() {
 		// TODO Auto-generated method stub
 		return null;

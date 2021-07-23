@@ -22,30 +22,40 @@ public class RoomManager {
 		this.rooms[0] = livingRoom;
 		this.startingRoom = livingRoom;
 
-		Room kitchen = new Room("kitchen!", "a",
-				"You entered the room like a pro and now standing in the middle of. You see nothing in the room." + "\n"
-						+ "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
-						+ "\n" + "To the north is a small room, where you can see a piano.");
+		Room kitchen = new Room("kitchen!", "The Kitchen",
+				"You entered the kitchen. The floors look clean and it looks nice. Only issue is that is smells like salt.");
 		this.rooms[1] = kitchen;
 		
 		
-		Room bathroom = new Room("bathroom!", "b",
-				"You entered the room like a pro and now standing in the middle of. You see nothing in the room." + "\n"
-						+ "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
-						+ "\n" + "To the north is a small room, where you can see a piano.");
+		Room bathroom = new Room("bathroom", "The Bathroom",
+				"You entered the bathroom. You decided to give the stool as try and tested to see if it held your weight for 15 minutes.");
 		this.rooms[2] = bathroom;
 		
-		Room laundryRoom = new Room("bathroom!", "c",
-				"You entered the room like a pro and now standing in the middle of. You see nothing in the room." + "\n"
-						+ "The hardwood floor leads west into doorway, next to a staircase that leads up to a second floor."
-						+ "\n" + "To the north is a small room, where you can see a piano.");
-		
+		Room laundryRoom = new Room("Laundry Room", "The Laundry Room",
+				"Its nice. fits washer and dryer");
 		this.rooms[3] = laundryRoom;
+		
+		Room diningRoom = new Room("Dining Room", "The Dining Room",
+				"Plenty of room for a table to eat on or a cool man cave spot.");
+		this.rooms[4] = diningRoom;
+		
+		Room garage = new Room("garage", "The Garage",
+				"You have no garage...");
+		this.rooms[5] = garage;
+		
 		// room = new room( " ", " ", " ",);	// for making more rooms later
 	
-		livingRoom.setExits(kitchen, null, laundryRoom, kitchen);	// set these to make sense and do it for each room
+		livingRoom.setExits(kitchen, null, bathroom, diningRoom);	// set these to make sense and do it for each room
 		
-		kitchen.setExits(livingRoom, livingRoom, kitchen, laundryRoom);
+		kitchen.setExits(laundryRoom, null, garage, null);
+		
+		bathroom.setExits(null, null, null, livingRoom);
+		
+		diningRoom.setExits(diningRoom, null, livingRoom, null);
+		
+		garage.setExits(laundryRoom, null, null, kitchen);
+		
+		laundryRoom.setExits(null, kitchen, garage, null);
 		
 	}
 

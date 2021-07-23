@@ -12,89 +12,85 @@ import fixtures.Room;
 class Main {
 	static Scanner s = new Scanner(System.in);
 	static String Pos = "";
-
+	static String[] input = new String[2];
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println("      The Red Suit \n" + "Would you like to play? (y/n)");
+		System.out.println("      The Red Suit \n" + "Would you like to play? (y/n). ");
 
-		char gameStart = s.next().charAt(0);
+		String gameStart = s.nextLine();
 
-		if (gameStart == 'y' || gameStart == 'Y') {
-
-			Player p1 = new Player();
-			RoomManager m1 = new RoomManager();
-
-			String[] commands;
-
-			int x = 1;
-
-			m1.init();
-			p1.setCurrentRoom(m1.startingRoom);
-			printRoom(p1);
+		if (gameStart .equals("y") || gameStart .equals("Y")) {
 			
-			m1.startingRoom.getExits();
 
-		
-			String[] userInput = collectInput();
-			parse(userInput, p1);
-			// now use p1.direction and item
-			// 
+				Player p1 = new Player();
+				RoomManager m1 = new RoomManager();
 
 
+				m1.init();
+				p1.setCurrentRoom(m1.startingRoom);
+				
+				do {
+				printRoom(p1);
+				collectInput();
+				parse(input, p1);
+				//m1.startingRoom = p1.currentRoom;
+			
+			}while (gameStart != "q");
 		}
 	}
 
 	private static void printRoom(Player p1) {
 		System.out.println(p1.getCurrentRoom());
 		System.out.println(p1.currentRoom.fLongDes);
+		System.out.println("Exits:");
 		
-		
-		HashMap<Integer,String> directionMap = new HashMap<>();
-		directionMap.put(0, "North");
-		directionMap.put(1, "South");
-		directionMap.put(2, "East");
-		directionMap.put(3, "West");
-		//int i = 0;
-		for (int i = 0; i < 4; i++) { 
-			
-			if(p1.currentRoom.getExits()[i] !=  null) {
-			System.out.print(directionMap.get(i) + " ");
-			
-			System.out.print(p1.currentRoom.getExits()[i].fShortDes);
-			System.out.println();
-			}
+		HashMap<Integer, String> directionMap = new HashMap<>();
+		directionMap.put(0, "North:");
+		directionMap.put(1, "South:");
+		directionMap.put(2, "East:");
+		directionMap.put(3, "West:");
+		// int i = 0;
+		for (int i = 0; i < 4; i++) {
 
+			if (p1.currentRoom.getExits()[i] != null) {
+				System.out.print(directionMap.get(i) + " ");
+
+				System.out.println(p1.currentRoom.getExits()[i].fShortDes);
+			}
 		}
+		System.out.println("What do you want to do?");
+		System.out.println("-------------------------");
+	
 	}
 
 	private static String[] collectInput() {
-
-		String action = s.nextLine();
-		String direction = s.nextLine();
-
-		String sUserInput[] = new String[2];
+		//input = new String[2];
 		String sInput = "";
 
 		sInput = s.nextLine();
-
 		int spaceKey = sInput.indexOf(" "); // look for 1st space
-
 		if (spaceKey > 0) {
 
-			sUserInput[0] = sInput.substring(0, spaceKey); // First command of the string before the space
+			input[0] = sInput.substring(0, spaceKey); // First command of the string before the space
 			spaceKey++;
-			sUserInput[1] = sInput.substring(spaceKey); // get the rest of the string
+			input[1] = sInput.substring(spaceKey); // get the rest of the string
+		}
+		else {
+			input[0] = sInput;
 		}
 
-		return (sUserInput);
+		return (input);
 	}
-
+	
 	private static void parse(String[] commands, Player p1) {
-		String commands1 = commands[0];
-		String commands2 = commands[1];
-		//
-		// p1.currentRoom = p1.currentRoom.getExit(command)
+		//String commands1 = commands[0];
+		//String commands2 = commands[1];
+		if(commands[0] .equals("q")) {							// use .equals when comparing strings!!!!!!
+			System.out.println("Game ending");
+			System.exit(0);
+		}
+		p1.currentRoom = p1.currentRoom.getExit(commands[1]);	//commands = commans[0], commands[1];
 
 	}
 }
