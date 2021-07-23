@@ -40,14 +40,15 @@ public class RoomManager {
 		this.rooms[4] = diningRoom;
 		
 		Room garage = new Room("garage", "The Garage",
-				"You can eaily fit 1.5 cars in it.");
+				"You can eaily fit one and a half cars in it.");
 		this.rooms[5] = garage;
 		
 		// room = new room( " ", " ", " ",);	// for making more rooms later
 	
+		
 		livingRoom.setExits(kitchen, null, bathroom, diningRoom);	// set these to make sense and do it for each room
 		
-		kitchen.setExits(laundryRoom, null, garage, null);
+		kitchen.setExits(laundryRoom, livingRoom, garage, null);
 		
 		bathroom.setExits(null, null, null, livingRoom);
 		

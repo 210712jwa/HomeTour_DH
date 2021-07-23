@@ -8,19 +8,12 @@ package fixtures;
 //If so, then the size of this array depends on how many directions you want to support.
 
 public class Room extends Fixtures {
-	int spot = 0;
-	int i = 0;
-	String fname;
-
 	private Room[] exits;
-
-	// if(what evere place ur in, list exits)
 
 	public Room(String fName, String fShortDes, String fLongDes) {
 		super(fName, fShortDes, fLongDes);
 		this.exits = new Room[4]; // size is your choice
 	}
-
 
 	public Room[] getExits() {
 		return exits;
@@ -31,10 +24,9 @@ public class Room extends Fixtures {
 		exits[1] = S;
 		exits[2] = E;
 		exits[3] = W;
-
-		
 	}
 
+// improvevments: have better check cond. for when they enter a direciton. error if not a choice or to retry
 	public Room getExit(String commands) {
 		if (commands.equals("North") || commands.equals("north")) {
 			return exits[0];
@@ -48,7 +40,6 @@ public class Room extends Fixtures {
 		if (commands.equals("West") || commands.equals("west")) {
 			return exits[3];
 		}
-		// TODO Auto-generated method stub
 
 		return null;
 	}

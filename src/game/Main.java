@@ -13,6 +13,7 @@ class Main {
 	static Scanner s = new Scanner(System.in);
 	static String Pos = "";
 	static String[] input = new String[2];
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -20,23 +21,19 @@ class Main {
 
 		String gameStart = s.nextLine();
 
-		if (gameStart .equals("y") || gameStart .equals("Y")) {
-			
+		if (gameStart.equals("y") || gameStart.equals("Y")) {
 
-				Player p1 = new Player();
-				RoomManager m1 = new RoomManager();
+			Player p1 = new Player();
+			RoomManager m1 = new RoomManager();
 
+			m1.init();
+			p1.setCurrentRoom(m1.startingRoom);
 
-				m1.init();
-				p1.setCurrentRoom(m1.startingRoom);
-				
-				do {
+			do {
 				printRoom(p1);
 				collectInput();
 				parse(input, p1);
-				//m1.startingRoom = p1.currentRoom;
-			
-			}while (gameStart != "q");
+			} while (gameStart != "q");
 		}
 	}
 
@@ -44,53 +41,47 @@ class Main {
 		System.out.println(p1.getCurrentRoom());
 		System.out.println(p1.currentRoom.fLongDes);
 		System.out.println("Exits:");
-		
+
 		HashMap<Integer, String> directionMap = new HashMap<>();
 		directionMap.put(0, "North:");
 		directionMap.put(1, "South:");
 		directionMap.put(2, "East:");
 		directionMap.put(3, "West:");
-		// int i = 0;
+
 		for (int i = 0; i < 4; i++) {
-
 			if (p1.currentRoom.getExits()[i] != null) {
-				System.out.print(directionMap.get(i) + " ");
-
-				System.out.println(p1.currentRoom.getExits()[i].fShortDes);
+				System.out.print(directionMap.get(i) + " " + p1.currentRoom.getExits()[i].fShortDes + "\n");
+				
 			}
 		}
-		System.out.println("What do you want to do?");
-		System.out.println("-------------------------");
-	
+		System.out.println("What do you want to do?(q = quit)");
+		System.out.println("---------------------------------");
+
 	}
 
+// improvements: check users input for errors and handle them, call an exception method or something
 	private static String[] collectInput() {
-		//input = new String[2];
 		String sInput = "";
 
 		sInput = s.nextLine();
-		int spaceKey = sInput.indexOf(" "); // look for 1st space
+		int spaceKey = sInput.indexOf(" ");
 		if (spaceKey > 0) {
 
 			input[0] = sInput.substring(0, spaceKey); // First command of the string before the space
 			spaceKey++;
-			input[1] = sInput.substring(spaceKey); // get the rest of the string
-		}
-		else {
+			input[1] = sInput.substring(spaceKey);
+		} else {
 			input[0] = sInput;
 		}
 
-		return (input);
+		return (input); 
 	}
-	
+
 	private static void parse(String[] commands, Player p1) {
-		//String commands1 = commands[0];
-		//String commands2 = commands[1];
-		if(commands[0] .equals("q")) {							// use .equals when comparing strings!!!!!!
-			System.out.println("Game ending");
+		if (commands[0].equals("q")) { // use .equals when comparing strings!!!!!!
+			System.out.println("Program ending");
 			System.exit(0);
 		}
-		p1.currentRoom = p1.currentRoom.getExit(commands[1]);	//commands = commans[0], commands[1];
-
+		p1.currentRoom = p1.currentRoom.getExit(commands[1]); 
 	}
 }
