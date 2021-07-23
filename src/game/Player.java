@@ -7,18 +7,17 @@ import fixtures.Room;
 public class Player {
 //room current room : room player is in
 
-	public int movingRoom = 0;
 	public Room currentRoom;
-	public String action = "";
-	public String roomTransfer = "";
-	public String item;
-	public String userDirectionInput;
+	public String direction;
+	public String[] command;
+	
+	
 	public String getCurrentRoom() {
 		return "Current room: " + this.currentRoom.fName;
 	}
 
-	public void setCurrentRoom(Room currentRoom) {
-		this.currentRoom = currentRoom;
+	public void setCurrentRoom(Room roomManagerSetRoom) {
+		this.currentRoom = roomManagerSetRoom;
 	}
 
 

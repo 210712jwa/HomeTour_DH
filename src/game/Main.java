@@ -9,7 +9,7 @@ import fixtures.Room;
 
 class Main {
 	static Scanner s = new Scanner(System.in);
-	static int Pos = 0;
+	static String Pos = "";
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,28 +19,26 @@ class Main {
 		char gameStart = s.next().charAt(0);
 
 		if (gameStart == 'y' || gameStart == 'Y') {
-			/*
-			 * 1. you need to make a fixture class room object 2. Pass i into room.object
-			 * from RoomManager 3. display info of Fixture objects details with getters
-			 * 
-			 */
 
 			Player p1 = new Player();
 			RoomManager m1 = new RoomManager();
+
 			String[] commands;
 
 			int x = 1;
+
 			m1.init();
 			p1.setCurrentRoom(m1.startingRoom);
 			printRoom(p1);
+			
+			m1.startingRoom.getExits();
 
-			m1.ExitOptions();
+		
 			String[] userInput = collectInput();
 			parse(userInput, p1);
 			// now use p1.direction and item
-			m1.checkP1Input(p1.direction, p1.item);
-			
-			//m1.checkP1Action(p1.action, p1.roomTransfer);
+			// 
+
 
 		}
 	}
@@ -48,6 +46,16 @@ class Main {
 	private static void printRoom(Player p1) {
 		System.out.println(p1.getCurrentRoom());
 		System.out.println(p1.currentRoom.fLongDes);
+		
+		for (int i = 0; i < 4; i++) { 
+			
+			if(p1.currentRoom.getExits()[i] !=  null) {
+			System.out.print(p1.direction + " ");
+			System.out.print(p1.currentRoom.getExits()[i].fShortDes);
+			System.out.println();
+			}
+
+		}
 	}
 
 	private static String[] collectInput() {
@@ -73,27 +81,10 @@ class Main {
 	}
 
 	private static void parse(String[] commands, Player p1) {
+		String commands1 = commands[0];
+		String commands2 = commands[1];
+		//
+		// p1.currentRoom = p1.currentRoom.getExit(command)
 
-		String command1 = commands[0];
-		String command2 = commands[1];
-		
-		
-		
-
-		// p1 needs to check to see if its "go" or "inspect" action. command from
-		// collectionInput in split into 2. use [0] for command and [1] for the sName
-
-		// if its "go" we change rooms,
-		// if its "inspect", we just display some text
-		if (command1 == "go") { // CHECK TO MAKE SURE IT CALLS IT RIGHT. USE .compareto to get "go" and "GO"
-			// get ready to move room
-			p1.direction = command2; 
-		}
-		else if( command1 == "inspect") {
-			p1.item = command2;
-		}
-		else {
-			System.out.println("invalid command");
-		}
 	}
 }

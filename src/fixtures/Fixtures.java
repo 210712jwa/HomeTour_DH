@@ -10,9 +10,33 @@ public abstract class Fixtures {
 		// or interacted with.
 
 	public Fixtures(String fName, String fShortDes, String fLongDes) {
-		super();
+		//super();
 		this.fName = fName;
 		this.fShortDes = fShortDes;
+		this.fLongDes = fLongDes;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getfShortDes() {
+		return fShortDes;
+	}
+
+	public void setfShortDes(String fShortDes) {
+		this.fShortDes = fShortDes;
+	}
+
+	public String getfLongDes() {
+		return fLongDes;
+	}
+
+	public void setfLongDes(String fLongDes) {
 		this.fLongDes = fLongDes;
 	}
 
