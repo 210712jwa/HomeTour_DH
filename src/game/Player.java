@@ -8,7 +8,7 @@ public class Player {
 //room current room : room player is in
 
 	public Room currentRoom;
-	public String direction;
+	public String directionalMap;
 	public String[] command;
 	
 	
@@ -24,5 +24,10 @@ public class Player {
 	public void action(Player p1) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String directionalMap() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

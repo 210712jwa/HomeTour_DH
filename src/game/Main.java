@@ -1,9 +1,11 @@
 package game;
 
+import java.util.HashMap;
 //This class will store the main(String[]) method for our game (and of course, it will be the only class that has a main(String[]) method). 
 //This is where the game-loop will go, where we'll display a prompt, collect input, and parse that input
 import java.util.Scanner;
-
+import java.io.*;
+import java.util.*;
 import fixtures.Fixtures;
 import fixtures.Room;
 
@@ -47,10 +49,18 @@ class Main {
 		System.out.println(p1.getCurrentRoom());
 		System.out.println(p1.currentRoom.fLongDes);
 		
+		
+		HashMap<Integer,String> directionMap = new HashMap<>();
+		directionMap.put(0, "North");
+		directionMap.put(1, "South");
+		directionMap.put(2, "East");
+		directionMap.put(3, "West");
+		//int i = 0;
 		for (int i = 0; i < 4; i++) { 
 			
 			if(p1.currentRoom.getExits()[i] !=  null) {
-			System.out.print(p1.direction + " ");
+			System.out.print(directionMap.get(i) + " ");
+			
 			System.out.print(p1.currentRoom.getExits()[i].fShortDes);
 			System.out.println();
 			}
